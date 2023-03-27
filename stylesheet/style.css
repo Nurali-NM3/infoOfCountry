@@ -41,3 +41,13 @@
     display: flex;
     justify-content: space-around;
 }
+.money{
+    display: flex;
+    align-items: center;
+
+}
+.title,
+.title2,
+.title3{
+    font-size: 20px;
+}

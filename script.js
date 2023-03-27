@@ -5,14 +5,28 @@ const input = document.querySelector('.input')
 const btn2 = document.querySelector('.btn2')
 const inputBtn = document.querySelector('.input-btn')
 const inputBtn2 = document.querySelector('.input-btn2')
+const title = document.querySelector('.title')
+const title2 = document.querySelector('.title2')
+const title3 = document.querySelector('.title3')
+const converter =document.querySelector('.converter')
+const submit = document.querySelector('.submit')
+
+
+submit.addEventListener('click',() => {
+    let f = converter.value
+    fetch(`https://api.exchangerate.host/latest?base=KGS&symbols=USD,EUR,RUB,&amount=${f}`)
+        .then(response => response.json())
+        .then(data =>{
+            console.log(data.rates)
 
 
 
-fetch('https://api.exchangerate.host/latest?base=kgs&symbols=USD,EUR')
-    .then(response => response.json())
-    .then((data) =>{
-        console.log(data)
-    })
+            title.innerHTML = Object.values(data.rates)[0].toFixed(4)
+            title2.innerHTML = Object.values(data.rates)[1].toFixed(4)
+            title3.innerHTML = Object.values(data.rates)[2].toFixed(4)
+        })
+})
+
 
 
 
@@ -55,6 +69,9 @@ btn.addEventListener('click',()=>{
                                     </div>
                                     <div class="info">                                  
                                      area:<h4>${country.area}</h4>                                 
+                                    </div>
+                                    <div class="info">                                  
+                                     population:<h4>${country.population}</h4>                                 
                                     </div>
                                     <div class="info">                                  
                                      Location:<a href="${country.maps.googleMaps}" target="_blank">
@@ -100,6 +117,9 @@ fetch(`https://restcountries.com/v3.1/region/europe`)
                                      area:<h4>${country.area}</h4>                                 
                                     </div>
                                     <div class="info">                                  
+                                     population:<h4>${country.population}</h4>                                 
+                                    </div>
+                                    <div class="info">                                  
                                      Location:<a href="${country.maps.googleMaps}" target="_blank">
                                                 gooleMaps
                                               </a>                                 
@@ -124,13 +144,16 @@ fetch(`https://restcountries.com/v3.1/region/europe`)
                                 </div>
                                     <h3>${country.name.common}</h3>
                                     <div class="info">                          
-                                     Capital:<h4>${country.capitalInfo[0]}</h4>                                 
+                                     Capital:<h4>${country.capital[0]}</h4>                                 
                                     </div>
                                     <div class="info">                                  
                                      Languages:<h4>${Object.values(country.languages)}</h4>                                 
                                     </div>
                                     <div class="info">                                  
                                      area:<h4>${country.area}</h4>                                 
+                                    </div>
+                                    <div class="info">                                  
+                                     population:<h4>${country.population}</h4>                                 
                                     </div>
                                     <div class="info">                                  
                                      Location:<a href="${country.maps.googleMaps}" target="_blank">
